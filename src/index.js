@@ -1,6 +1,7 @@
 'use strict';
 
 {
+    
     function fetchJSON(url) { 
             return new Promise((resolve, reject) => {
               const xhr = new XMLHttpRequest();
@@ -32,11 +33,6 @@
     }
 
     function main(url) {
-        // fetchJSON(url, (err, data) => {
-        //     const root = document.getElementById('root');
-        //     if (err) {
-        //         createAndAppend('div', root, {html: err.message, class: 'alert-error'});
-        //     } else {
             fetchJSON(url).then(JSON.parse).then(data => {   
 
                 const header = createAndAppend('div', root, {class: 'header'});
@@ -60,8 +56,6 @@
                 const repo = data[0];
                 renderRepo(left, repo);
                 renderContributors(right, repo);
-
-                // createAndAppend('pre', root, {html: JSON.stringify(data, null, 2)});
             
         });
     }
@@ -78,20 +72,12 @@
     function renderContributors(parent, repo) {
         const url = repo.contributors_url;
         fetchJSON(url ).then(JSON.parse).then(contData => {
-        // fetchJSON(url, (err, contributors) => {
-        //     if (err) {
-        //         createAndAppend('div', parent, {html: err.message, class: 'alert-error'});
-        //     } else {
          
                 contData.forEach(contributor => {
                     const contributorDiv = createAndAppend('div', parent);
                     createAndAppend('img', contributorDiv, {src: contributor.avatar_url})
                 });
-console.log(contData);
-
-                // createAndAppend('pre', parent, {html: JSON.stringify(contributors, null, 2)});
-            
-       
+console.log(contData);   
 
     }).catch(err => document.getElementById('root').innerHTML = err);
     }
