@@ -1,7 +1,10 @@
 'use strict';
 
 {
-    
+    let REPOS = [];
+    let CONTRIBUTORS = [];
+    let SELECTED_REPO_INDEX = -1;
+
     function fetchJSON(url) { 
             return new Promise((resolve, reject) => {
               const xhr = new XMLHttpRequest();
@@ -60,14 +63,17 @@
         });
     }
 
+
     function renderRepo(parent, repo) {
-        const labelNames = ['name', 'url'];
+        const labelNames = ['name', 'url','description' ,'forks_count' ,'updated_at' ];
         labelNames.forEach(labelName => {
             const p = createAndAppend('p', parent);
             createAndAppend('label', p, {html: labelName});
-            createAndAppend('span', p, {html: repo[labelName]});
+            createAndAppend('span', p, {html: repo[labelName]});         
         });
     }
+
+
 
     function renderContributors(parent, repo) {
         const url = repo.contributors_url;
@@ -75,9 +81,12 @@
          
                 contData.forEach(contributor => {
                     const contributorDiv = createAndAppend('div', parent);
-                    createAndAppend('img', contributorDiv, {src: contributor.avatar_url})
+                    createAndAppend('img', contributorDiv, {src: contributor.avatar_url});
+                    createAndAppend('a', contributorDiv, {href: contributor.html_url});
+                    createAndAppend('p', contributorDiv, {html: contributor.login});
+                    createAndAppend('h4', contributorDiv, {html: contributor.contributions});
                 });
-console.log(contData);   
+ 
 
     }).catch(err => document.getElementById('root').innerHTML = err);
     }
