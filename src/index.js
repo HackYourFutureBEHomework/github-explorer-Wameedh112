@@ -36,6 +36,7 @@
 
                 const header = createAndAppend('div', root, {class: 'header'});
                 createAndAppend('label', header, {html: 'HYF repositories'});
+                data.sort((a, b) => a.name.localeCompare(b.name));
                 const repositorySelect = createAndAppend('select', header);
                 data.forEach(repo => {
                    createAndAppend('option', repositorySelect, {html: repo.name});
