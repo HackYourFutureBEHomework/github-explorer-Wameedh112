@@ -36,16 +36,16 @@
 
                 const header = createAndAppend('div', root, {class: 'header'});
                 createAndAppend('label', header, {html: 'HYF repositories'});
-                data.sort((a, b) => a.name.localeCompare(b.name));
                 const repositorySelect = createAndAppend('select', header);
                 data.forEach(repo => {
-                   createAndAppend('option', repositorySelect, {html: repo.name});            
+                   createAndAppend('option', repositorySelect, {html: repo.name});
                 });
 
                 const left = createAndAppend('div', root, {class: 'left'});
                 const right = createAndAppend('div', root, {class: 'right'});
 
                 createAndAppend('p', right, {html: 'Contributions', class: 'con-right'});
+
                 repositorySelect.addEventListener('change', (event) => {
                     let repo = data.find(r => r.name === repositorySelect.value);
                     left.innerHTML = '';
@@ -53,11 +53,12 @@
                     renderRepo(left, repo);
                     renderContributors(right, repo);
                 });
-               
+
                 const repo = data[0];
                 renderRepo(left, repo);
                 renderContributors(right, repo);
         });
+        
     }
     const  dictionary = {
         forks_count: 'Forks :',
