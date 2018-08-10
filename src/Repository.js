@@ -13,16 +13,32 @@ class Repository {
    * @param {HTMLElement} parent The parent element in which to render the repository.
    */
   render(parent) {
-    const labelNames = ['name', 'description' ,'forks_count' ,'updated_at' ];
+    const labelNames = ['name', 'description', 'forks_count', 'updated_at'];
     labelNames.forEach(labelName => {
-      const p = Util.createAndAppend('div', parent,{class: 'Repo'});
-      let z = translate(labelName);
+      const p = Util.createAndAppend('div', parent, {
+        class: 'Repo'
+      });
+      const z = translate(labelName);
       if (z === 'Name :') {
-        Util.createAndAppend('label', p, {html: z, class: 'Tlabel'});
-        Util.createAndAppend('a', p, {html:this.data[labelName], href:this.data.html_url ,target: '_blank' , class: 'repo-link'}); 
-      }else { 
-        Util.createAndAppend('label', p, {html: z, class: 'Tlabel'});
-        Util.createAndAppend('span', p, {html: this.data[labelName], class: 'labelN'});  
+        Util.createAndAppend('label', p, {
+          html: z,
+          class: 'Tlabel'
+        });
+        Util.createAndAppend('a', p, {
+          html: this.data[labelName],
+          href: this.data.html_url,
+          target: '_blank',
+          class: 'repo-link'
+        });
+      } else {
+        Util.createAndAppend('label', p, {
+          html: z,
+          class: 'Tlabel'
+        });
+        Util.createAndAppend('span', p, {
+          html: this.data[labelName],
+          class: 'labelN'
+        });
       }
     });
     //
@@ -46,12 +62,12 @@ class Repository {
 }
 const dictionary = {
   forks_count: 'Forks :',
-  name:'Name :',
-  description:'Description :',
-  updated_at:'Update :'
-  };
+  name: 'Name :',
+  description: 'Description :',
+  updated_at: 'Update :'
+};
 
-function translate(labelName){
-let reqLabel = dictionary[labelName];
-        return reqLabel;
-      }
+function translate(labelName) {
+  const reqLabel = dictionary[labelName];
+  return reqLabel;
+}
