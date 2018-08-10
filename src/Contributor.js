@@ -16,7 +16,8 @@ class Contributor {
   render(contributorList) {
     const contInfo = Util.createAndAppend('li', contributorList, { class: 'contributor' });
     Util.createAndAppend('img', contInfo, { src: this.data.avatar_url });
-    Util.createAndAppend('a', contInfo, { html: this.data.login, href: this.html_url, target: '_blank' });
-    Util.createAndAppend('h4', contInfo, { html: this.data.contributions });
+
+    Util.createAndAppend('a', contInfo, { html: this.data.login, href: this.html_url, target: '_blank', class: 'contributor-data' });
+    Util.createAndAppend('div', contInfo, { html: this.data.contributions, class: 'contributor-badge' });
   }
 }
