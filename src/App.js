@@ -17,21 +17,29 @@ class App {
     // 2. Make an initial XMLHttpRequest using Util.fetchJSON() to populate your <select> element
 
     const root = document.getElementById('root');
-    const header = Util.createAndAppend("header", root, {class: "header",html: "<h3>HYF Repositories</h3>"});
-    const repositorySelect = Util.createAndAppend("select", header, {class: "select"});
-    const container =  Util.createAndAppend("div", root, {class: 'container' });
-    const infoRepo = Util.createAndAppend ('div' ,container,{class:'infoRepo'});
-    const infoCon = Util.createAndAppend ('div' ,container,{class:'infoCon'});
-    const repoList = Util.createAndAppend ('ul' ,infoRepo,{class:'repoList'});
-  
+    const header = Util.createAndAppend("header", root, {
+      class: "header",
+      html: "<h3>HYF Repositories</h3>"
+    });
+    const repositorySelect = Util.createAndAppend("select", header, {
+      class: "select"
+    });
+
+
     try {
       const repos = await Util.fetchJSON(url);
       this.repos = repos.sort((url, repos) => url.name.localeCompare(repos.name)).map(repo => new Repository(repo));
-      this.repos.forEach( (repo,i) => {
-        Util.createAndAppend("option", repositorySelect, {class: "option",html: repo.name(),value:i});
+      this.repos.forEach((repo, i) => {
+        Util.createAndAppend("option", repositorySelect, {
+          class: "option",
+          html: repo.name(),
+          value: i
+        });
       });
       repositorySelect.addEventListener("change", () => this.fetchContributorsAndRender(repositorySelect.value));
-
+      Util.createAndAppend("div", root, {
+        class: "container"
+      });
     } catch (error) {
       this.renderError(error);
     }
@@ -43,22 +51,27 @@ class App {
    * @param {number} index The array index of the repository.
    */
   async fetchContributorsAndRender(index) {
-    const repo = this.repos[index];
-    const container = document.getElementsByClassName('container');
+    const repo = this.repos[index],
+      container = document.querySelector('.container');
 
     try {
-     
+
       const contributors = await repo.fetchContributors();
 
       // Erase previously generated inner HTML from the container div
       container.innerHTML = '';
 
-      const infoRepos = document.getElementsByClassName('infoRepo');
-      const infoConn =document.getElementsByClassName('infoCon');
-      const contributorList = document.getElementsByClassName('repoList');
-  
+      const infoRepos = Util.createAndAppend('div', container, {
+        class: 'info_repo'
+      });
+      Util.createAndAppend('div', container, {
+        class: 'info_con'
+      });
+      const contributorList = Util.createAndAppend('ul', info_con, {
+        class: 'repo_list'
+      });
+
       repo.render(infoRepos);
-      console.log(infoRepos);
 
       contributors
         .map(contributor => new Contributor(contributor))
@@ -75,7 +88,9 @@ class App {
   renderError(error) {
     const container = document.querySelector(".container");
     container.innerHTML = "",
-      Util.createAndAppend("div", container, {html: error.message});
+      Util.createAndAppend("div", container, {
+        html: error.message, class: 'alert-error'
+      });
     // Replace this comment with your code
   }
 }
