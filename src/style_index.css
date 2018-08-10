@@ -1,0 +1,118 @@
+.alert-error {
+    color: red;
+}
+
+*{
+    list-style-type: none;
+}
+
+body{
+    width: 768px;
+    margin: 0 auto;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f8f8f8;
+    color: rgb(0, 0, 0, 87%);
+}
+
+.header {
+    color: white;
+    background-color: #3F51B5;
+    padding: 8px 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.header label {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+}
+
+select {
+    margin-left: 16px;
+    font-size: 14px;
+    width: 250px;
+    height: 32px;
+    padding: 2px;
+  }
+
+a {
+    padding: 5px;
+    text-decoration: none;
+    color: rgb(0, 0, 0, 87%);
+}
+
+a:hover {
+    font-weight: bold;
+    color: #3F51B5;
+   
+}
+
+img {
+     border-radius: 3px;
+    margin-right: 16px;
+    height: 48px;
+}
+
+.left, .right{
+    width: 45%;
+    border-radius: 3px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 15px; 
+}
+
+.left {
+  float: left;
+  margin-right: 1px;
+}
+
+.right{
+    margin: 0;
+    float: right;
+}
+
+.Tlabel{
+    font-weight: bold;
+    color: #3F51B5;
+    text-shadow: black;
+    margin-right: 5px;
+    
+}
+
+.contributor{   
+    border-bottom: solid 1px rgb(0, 0, 0, 12%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.a-right{
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-content: center;
+}
+
+.right p{
+    font-size: 0.8rem;
+    color: rgb(0, 0, 0, 54%);
+    
+}
+
+h4 {
+    font-size: 12px;
+    padding: 2px 8px;
+    line-height: 1rem;
+    /* background-color: gray; */
+    background-color: #3F51B5;
+    color: white;
+    border-radius: 4px;
+}
