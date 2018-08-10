@@ -19,16 +19,21 @@ class App {
     const root = document.getElementById('root');
     const header = Util.createAndAppend("header", root, {
       class: "header",
-      html: "<h3>HYF Repositories</h3>"
+      html: "<h4>HYF Repositories</h4>"
     });
     const repositorySelect = Util.createAndAppend("select", header, {
       class: "select"
     });
 
+    Util.createAndAppend("option", repositorySelect, {
+      class: "option",
+      html: "*** Select the repositry ***",
+    });
 
     try {
       const repos = await Util.fetchJSON(url);
       this.repos = repos.sort((url, repos) => url.name.localeCompare(repos.name)).map(repo => new Repository(repo));
+
       this.repos.forEach((repo, i) => {
         Util.createAndAppend("option", repositorySelect, {
           class: "option",
@@ -36,6 +41,7 @@ class App {
           value: i
         });
       });
+
       repositorySelect.addEventListener("change", () => this.fetchContributorsAndRender(repositorySelect.value));
       Util.createAndAppend("div", root, {
         class: "container"
@@ -67,6 +73,9 @@ class App {
       const info_con = Util.createAndAppend('div', container, {
         class: 'info_con'
       });
+      Util.createAndAppend('p', info_con, {
+        html: 'Contributions', class: 'contributor-header'
+      });
       const contributorList = Util.createAndAppend('ul', info_con, {
         class: 'repo_list'
       });
@@ -96,5 +105,4 @@ class App {
 }
 
 const HYF_REPOS_URL = 'https://api.github.com/orgs/HackYourFuture/repos?per_page=100';
-
 window.onload = () => new App(HYF_REPOS_URL);
