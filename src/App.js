@@ -64,7 +64,7 @@ class App {
       const infoRepos = Util.createAndAppend('div', container, {
         class: 'info_repo'
       });
-      Util.createAndAppend('div', container, {
+      const info_con = Util.createAndAppend('div', container, {
         class: 'info_con'
       });
       const contributorList = Util.createAndAppend('ul', info_con, {
