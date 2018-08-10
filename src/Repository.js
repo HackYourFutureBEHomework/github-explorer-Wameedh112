@@ -22,7 +22,7 @@ class Repository {
       if (z === 'Name :') {
         Util.createAndAppend('label', p, {
           html: z,
-          class: 'Tlabel'
+          class: 'label'
         });
         Util.createAndAppend('a', p, {
           html: this.data[labelName],
@@ -33,7 +33,7 @@ class Repository {
       } else {
         Util.createAndAppend('label', p, {
           html: z,
-          class: 'Tlabel'
+          class: 'label'
         });
         Util.createAndAppend('span', p, {
           html: this.data[labelName],
